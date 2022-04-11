@@ -28,8 +28,8 @@
             <td id="favorite_buttons_<%= @book.id %>">
 　　　       <%= render "favorites/favorite", book: @book %>
 　　        </td>
-　　        <td><div class="post_comments"><%= render 'post_comments/post_comment', book: @book %></div>
-　　          
+　　        <td>
+　　          <div class="post_comments"><%= render 'post_comments/post_comment', book: @book %></div>
 　　        </td>
             <td>
             <%= form_with model:[@book,@post_comment], local:false do |f| %>
@@ -37,8 +37,7 @@
             <%= f.submit '送信'%>
             <% end %>
             </td>
-
-          </td>
+              <td class="view-count">👀数: <%= @book_detail.view_counts.count %></td>
         </tr>
       </table>
     </div>

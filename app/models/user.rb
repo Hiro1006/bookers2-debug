@@ -3,6 +3,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+         
+  has_many :messages, dependent: :destroy
+  has_many :entries, dependent: :destroy
 
   has_many :books
   has_one_attached :profile_image
@@ -18,6 +21,9 @@ class User < ApplicationRecord
 
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :follower
+  
+  has_many :view_counts, dependent: :destroy
+  
 
   def follow(user_id)
   relationships.create(followed_id: user_id)
